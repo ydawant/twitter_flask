@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify
 from helper_methods import influence_score_calc
-from models import Tweet
+from models import Tweet, User
 from twitter_client import get_twitter_api
 
 app = Flask(__name__)
@@ -17,11 +17,14 @@ def index():
 
 @app.route("/user/<handle>/", methods=['GET'])
 def user(handle):
-  pass
+  twitter_user = api.GetUser(screen_name=handle)
+  user = User(id = twitter_user.id, description=twitter_user.description, 
+    followers=twitter_user.followers_count, following=twitter_user.friends_count)
+  return jsonify(user=user.serialize())
 
 @app.route("/tweets/<handle>/", methods=['GET'])
 def tweets(handle):
-  statuses = api.GetUserTimeline(handle)
+  statuses = api.GetUserTimeline(screen_name=handle)
 
   tweet_list = []
   for s in statuses:
