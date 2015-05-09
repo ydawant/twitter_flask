@@ -20,7 +20,6 @@ def index():
 @app.route("/user/<handle>/", methods=['GET'])
 def user(handle):
   twitter_user = api.GetUser(screen_name=handle)
-  print twitter_user
   user = User(id = twitter_user.id, name=twitter_user.name, description=twitter_user.description, 
     followers=twitter_user.followers_count, following=twitter_user.friends_count)
   return jsonify(user=user.serialize())
