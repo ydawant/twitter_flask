@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="tweetsApp">
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-  <script src="tweets.js"></script>
+  <script src={{ script }}></script>
 </head>
-  <body>
-    Hello World
-  </body>
+<body>
+<h2> List of Tweets </h2>
+<div ng-controller="TweetListCtrl">
+
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <!--Sidebar content-->
+
+        Search: <input ng-model="query">
+        Sort by:
+        <select ng-model="orderProp">
+          <option value="retweet_count">Retweets</option>
+          <option value="created_at">Newest</option>
+        </select>
+        <select ng-model="direction">
+          <option value="reverse">Reverse</option>
+        </select>
+
+      <form ng-submit="submit()">
+        Enter handle and hit enter:
+        <input type="handle" ng-model="handle" name="handle" />
+        <input type="submit" id="submit" value="Submit" />
+      </form>
+        <!--Body content-->
+        <div>
+          User:{{user.name|angular}}<br>
+          <span>Description: {{user.description|angular}}</span>
+        </div>
+
+        <ul class="tweets">
+          <li ng-repeat="tweet in tweets | filter:query | orderBy:orderProp:direction">
+            Tweet id: <span>{{tweet.id|angular}}</span>
+            Text: <p>{{tweet.text|angular}}</p>
+            Retweets: <p>{{tweet.retweet_count|angular}}</p>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+</body>
 </html>
+

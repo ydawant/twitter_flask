@@ -1,9 +1,11 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, url_for
 from helper_methods import influence_score_calc
 from models import Tweet, User
 from twitter_client import get_twitter_api
+from flask.ext.triangle import Triangle
 
 app = Flask(__name__)
+Triangle(app)
 
 # api = get_twitter_api()
 
@@ -13,12 +15,13 @@ api = get_twitter_api()
 #need to render the initial page... all the rest is JSON.
 @app.route("/", methods=['GET'])
 def index():
-  return render_template("index.html")
+  return render_template("index.html", script=url_for('static', filename='tweets.js'))
 
 @app.route("/user/<handle>/", methods=['GET'])
 def user(handle):
   twitter_user = api.GetUser(screen_name=handle)
-  user = User(id = twitter_user.id, description=twitter_user.description, 
+  print twitter_user
+  user = User(id = twitter_user.id, name=twitter_user.name, description=twitter_user.description, 
     followers=twitter_user.followers_count, following=twitter_user.friends_count)
   return jsonify(user=user.serialize())
 

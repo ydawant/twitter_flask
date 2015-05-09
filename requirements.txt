@@ -1,3 +1,4 @@
 Flask==0.10.1
 python-twitter==2.2
+Flask-Triangle==0.5.4
 
