@@ -14,7 +14,11 @@
       <div class="col-md-2">
         <!--Sidebar content-->
 
-        Search: <input ng-model="query">
+        <label>Filter by:
+          <select ng-model="search" ng-init="picture:{'!null'}">
+            <option value="">All</option>
+            <option value="picture:{'!null'}">Picture</option>
+          </select>
         Sort by:
         <select ng-model="orderProp">
           <option value="retweet_count">Retweets</option>
@@ -36,10 +40,11 @@
         </div>
 
         <ul class="tweets">
-          <li ng-repeat="tweet in tweets | filter:query | orderBy:orderProp:direction">
-            Tweet id: <span>{{tweet.id|angular}}</span>
-            Text: <p>{{tweet.text|angular}}</p>
-            Retweets: <p>{{tweet.retweet_count|angular}}</p>
+          <li ng-repeat="tweet in tweets | filter:search | orderBy:orderProp:direction">
+            Tweet id: {{tweet.id|angular}} <br>
+            Text: {{tweet.text|angular}} <br>
+            Retweets: {{tweet.retweet_count|angular}} <br>
+            Picture: {{tweet.picture|angular}} <br>
           </li>
         </ul>
 
