@@ -8,49 +8,40 @@
 <h2> List of Tweets </h2>
 <div ng-controller="TweetListCtrl">
 
-  
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-2">
-        <!--Sidebar content-->
+    <label>Filter by:
+      <select ng-model="search" ng-init="all">
+        <option value="all">All</option>
+        <option value="picture">Picture</option>
+      </select>
+    Sort by:
+    <select ng-model="orderProp">
+      <option value="retweet_count">Retweets</option>
+      <option value="created_at">Newest</option>
+    </select>
+    <select ng-model="direction">
+      <option value="reverse">Reverse</option>
+    </select>
 
-        <label>Filter by:
-          <select ng-model="search" ng-init="all">
-            <option value="all">All</option>
-            <option value="picture">Picture</option>
-          </select>
-        Sort by:
-        <select ng-model="orderProp">
-          <option value="retweet_count">Retweets</option>
-          <option value="created_at">Newest</option>
-        </select>
-        <select ng-model="direction">
-          <option value="reverse">Reverse</option>
-        </select>
-
-      <form ng-submit="submit()">
-        Enter handle and hit enter:
-        <input type="handle" ng-model="handle" name="handle" />
-        <input type="submit" id="submit" value="Submit" />
-      </form>
-        <!--Body content-->
-        <div>
-          User:{{user.name|angular}}<br>
-          <span>Description: {{user.description|angular}}</span>
-        </div>
-
-
-        <ul class="tweets">
-          <li ng-repeat="tweet in picFilter(tweets) | orderBy:orderProp:direction">
-            Tweet id: {{tweet.id|angular}} <br>
-            Text: {{tweet.text|angular}} <br>
-            Retweets: {{tweet.retweet_count|angular}} <br>
-            Picture: {{tweet.picture|angular}} <br>
-          </li>
-        </ul>
-
-      </div>
+  <form ng-submit="submit()">
+    Enter handle and hit enter:
+    <input type="handle" ng-model="handle" name="handle" />
+    <input type="submit" id="submit" value="Submit" />
+  </form>
+    <!--Body content-->
+    <div>
+      User:{{user.name|angular}}<br>
+      <span>Description: {{user.description|angular}}</span>
     </div>
+
+
+    <ul class="tweets" style="list-style-type:none">
+      <li class="tweet_items" ng-repeat="tweet in picFilter(tweets) | orderBy:orderProp:direction">
+        {{tweet.text|angular}} <br>
+        Retweets: {{tweet.retweet_count|angular}}, Influence Score: {{tweet.influence_score|angular}}<br>
+        Picture: {{tweet.picture|angular}}
+      </li>
+    </ul>
+  </div>  
 </body>
 </html>
 
