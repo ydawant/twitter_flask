@@ -28,7 +28,7 @@ angular.module('tweetsApp', [])
               score += $scope.tweets[i].influence_score
             } 
             score += $scope.user.followers
-            return score   
+            return score
           }
         }
       }

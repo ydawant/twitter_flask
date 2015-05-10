@@ -39,9 +39,12 @@
     <ul class="tweets" style="list-style-type:none">
       <li class="tweet_items" ng-repeat="tweet in picFilter(tweets) | orderBy:orderProp:direction">
         {{tweet.text|angular}} <br>
-        Retweets: {{tweet.retweet_count|angular}}, Influence Score: {{tweet.influence_score|angular}}<br>
-        Picture: {{tweet.picture|angular}}<br>
-        Date: {{tweet.created_at|angular}}
+        <ul style="margin-bottom:5px;">
+          <li>Retweets: {{tweet.retweet_count|angular}}</li> 
+          <li>Influence Score: {{tweet.influence_score|angular}}</li>
+          <li>Picture: {{tweet.picture|angular}}</li>
+          <li>Date: {{tweet.created_at|angular}}</li>
+        </ul>
       </li>
     </ul>
   </div>  
