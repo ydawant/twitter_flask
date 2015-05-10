@@ -15,9 +15,9 @@
         <!--Sidebar content-->
 
         <label>Filter by:
-          <select ng-model="search" ng-init="picture:{'!null'}">
-            <option value="">All</option>
-            <option value="picture:{'!null'}">Picture</option>
+          <select ng-model="search" ng-init="all">
+            <option value="all">All</option>
+            <option value="picture">Picture</option>
           </select>
         Sort by:
         <select ng-model="orderProp">
@@ -39,8 +39,9 @@
           <span>Description: {{user.description|angular}}</span>
         </div>
 
+
         <ul class="tweets">
-          <li ng-repeat="tweet in tweets | filter:search | orderBy:orderProp:direction">
+          <li ng-repeat="tweet in picFilter(tweets) | orderBy:orderProp:direction">
             Tweet id: {{tweet.id|angular}} <br>
             Text: {{tweet.text|angular}} <br>
             Retweets: {{tweet.retweet_count|angular}} <br>
