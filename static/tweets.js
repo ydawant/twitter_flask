@@ -20,5 +20,16 @@ angular.module('tweetsApp', [])
             return $scope.tweets
           }
         }
-  		}
+
+        $scope.getProfileScore = function() {
+          var score = 0;
+          if ($scope.tweets && $scope.user) {
+            for(i=0; i < $scope.tweets.length; i++) {
+              score += $scope.tweets[i].influence_score
+            } 
+            score += $scope.user.followers
+            return score   
+          }
+        }
+      }
 		}]);

@@ -27,10 +27,12 @@
     <input type="handle" ng-model="handle" name="handle" />
     <input type="submit" id="submit" value="Submit" />
   </form>
+
     <!--Body content-->
     <div>
       User:{{user.name|angular}}<br>
-      <span>Description: {{user.description|angular}}</span>
+      Description: {{user.description|angular}}<br>
+      Profile Score: {%raw%} {{getProfileScore()}} {%endraw%}
     </div>
 
 
@@ -39,6 +41,7 @@
         {{tweet.text|angular}} <br>
         Retweets: {{tweet.retweet_count|angular}}, Influence Score: {{tweet.influence_score|angular}}<br>
         Picture: {{tweet.picture|angular}}
+        Date: {{tweet.created_at|angular}}
       </li>
     </ul>
   </div>  
