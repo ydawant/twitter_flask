@@ -4,6 +4,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
   <script src={{ script }}></script>
 </head>
+
 <body>
 <h2> List of Tweets </h2>
 <div ng-controller="TweetListCtrl">
@@ -17,10 +18,6 @@
     <select ng-model="orderProp">
       <option value="retweet_count">Retweets</option>
       <option value="created_at">Newest</option>
-    </select>
-    <select ng-model="direction">
-        <option value="">Desc</option>
-        <option value="reverse">Asc</option>
     </select>
 
   <form ng-submit="submit()">
@@ -38,7 +35,7 @@
 
 
     <ul class="tweets" style="list-style-type:none">
-      <li class="tweet_items" ng-repeat="tweet in picFilter(tweets) | orderBy:orderProp:direction">
+      <li class="tweet_items" ng-repeat="tweet in picFilter(tweets) | orderBy:orderProp:true">
         {{tweet.text|angular}} <br>
         <ul style="margin-bottom:5px;">
           <li>Retweets: {{tweet.retweet_count|angular}}</li> 
