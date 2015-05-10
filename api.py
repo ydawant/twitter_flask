@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, url_for
-from helper_methods import influence_score_calc
+from helper_methods import influence_score_calc, convert_datetime
 from models import Tweet, User
 from twitter_client import get_twitter_api
 from flask.ext.triangle import Triangle
@@ -31,7 +31,7 @@ def tweets(handle):
   tweet_list = []
   for s in statuses:
     tweet = Tweet(id = s.id, text=s.text, retweet_count = s.retweet_count,
-      created_at = s.created_at, influence_score=influence_score_calc(s.text),
+      created_at = convert_datetime(s.created_at), influence_score=influence_score_calc(s.text),
       picture = (None if s.media==[] else s.media[0].get("media_url", None)))
     tweet_list.append(tweet)
 

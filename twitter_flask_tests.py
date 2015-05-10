@@ -1,9 +1,10 @@
+from datetime import datetime
 import json
 import unittest
 from mock import patch
 import twitter
 from api import app
-from helper_methods import influence_score_calc
+from helper_methods import influence_score_calc, convert_datetime
 
 
 class TwitterUser(object):
@@ -71,6 +72,10 @@ class TestApi(unittest.TestCase):
     bad_score = influence_score_calc("text with bad thing!")
     self.assertEqual(good_score, 1)
     self.assertEqual(bad_score, -1)
+
+  def test_conver_datetime(self):
+    converted = convert_datetime("Sat May 09 02:28:59 +0000 2015")
+    self.assertEqual(type(converted), datetime)
 
 if __name__ == '__main__':
   unittest.main()

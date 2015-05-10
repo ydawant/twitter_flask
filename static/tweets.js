@@ -2,7 +2,7 @@ angular.module('tweetsApp', [])
 	.controller('TweetListCtrl', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
 	    $scope.submit = function() {
 	      if ($scope.handle) {
-            $http.get('https://twitter-flask.herokuapp.com/tweets/' + $scope.handle + "/").success(function(data) {      
+            $http.get('https://twitter-flask.herokuapp.com/tweets/' + $scope.handle + "/").success(function(data) {
             $scope.tweets = data['tweets'];
   				});
         }
