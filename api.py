@@ -11,7 +11,6 @@ Triangle(app)
 
 api = get_twitter_api()
 
-
 #need to render the initial page... all the rest is JSON.
 @app.route("/", methods=['GET'])
 def index():
