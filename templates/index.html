@@ -36,7 +36,7 @@
 
 
     <ul class="tweets" style="list-style-type:none">
-      <li class="tweet_items" ng-repeat="tweet in picFilter(tweets) | orderBy:orderProp:true">
+      <li class="tweet_items" ng-repeat="tweet in picFilter() | orderBy:orderProp:true">
         {{tweet.text|angular}} <br>
         <ul style="margin-bottom:5px;">
           <li>Retweets: {{tweet.retweet_count|angular}}</li> 
