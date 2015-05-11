@@ -2,14 +2,24 @@ angular.module('tweetsApp', [])
 	.controller('TweetListCtrl', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
 	    $scope.submit = function() {
 	      if ($scope.handle) {
-            $http.get('https://twitter-flask.herokuapp.com/tweets/' + $scope.handle + "/").success(function(data) {
+            $http.get('https://twitter-flask.herokuapp.com/tweets/' + $scope.handle + "/").
+            success(function(data) {
             $scope.tweets = data['tweets'];
-  				});
+  				}).
+            error(function(data) {
+              $scope.tweets = [];
+            });
         }
         if ($scope.handle) {
-            $http.get('https://twitter-flask.herokuapp.com/user/' + $scope.handle + "/").success(function(data) {
+            $http.get('https://twitter-flask.herokuapp.com/user/' + $scope.handle + "/").
+            success(function(data) {
   					$scope.user = data['user'];
-        	});
+            $scope.user_error = false;
+        	}).
+            error(function(data) {
+              $scope.user = null;
+              $scope.user_error = true;
+            });
         }
 
         $scope.picFilter = function(tweets) {

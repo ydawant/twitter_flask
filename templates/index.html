@@ -27,6 +27,7 @@
   </form>
 
     <!--Body content-->
+    <div ng-show="user_error">There was an error loading this user. Handle could not be found.</div>
     <div>
       User:{{user.name|angular}}<br>
       Description: {{user.description|angular}}<br>
