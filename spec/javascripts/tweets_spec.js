@@ -7,13 +7,12 @@ describe('TweetListCtrl', function() {
 
    beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
      $httpBackend = _$httpBackend_;
-     $httpBackend.expectGET('tweets/ydawant').
-        respond([{data: 'tweet'}]);
-
+     
      scope = $rootScope.$new();
+     scope.handle = "ydawant";
      ctrl = $controller('TweetListCtrl', {$scope: scope});
-   }));
-
+   })
+   );
    afterEach(function() {
      $httpBackend.verifyNoOutstandingExpectation();
      $httpBackend.verifyNoOutstandingRequest();
